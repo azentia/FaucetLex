@@ -7,15 +7,16 @@ parameters:
 
 doctrine:
     dbal:
-        # configure these for your database server
-        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
+        host:     '%env(DATABASE_HOST)%'
+        dbname:   '%env(DATABASE_NAME)%'
+        user:     '%env(DATABASE_USER)%'
+        password: '%env(DATABASE_PSW)%'
+        url:      '%env(DATABASE_URL)%'
+        driver:   '%env(DATABASE_DRIVER)%'
+        port:     '%env(DATABASE_PORT)%'
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
-
-        url: '%env(resolve:DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
