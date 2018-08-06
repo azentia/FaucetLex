@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<button id="claim">Claim</button>
+<p id="satochi">{{ app.user.satochi }}</p>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(document).on('click', '#claim', function() {
+        $.ajax({
+            url: "{{ (path('faucet_claim')) }}",
+            type: "POST",
+            dataType: "json",
+            data: {},
+            async: true,
+            success: function(response) {
+                $("#satochi").text(response.satochi);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //$("#message").text("Un erreur est apparue, merci de recharger la page.").show();
+            }
+        });
+    })
+</script>
+{% endblock %}
